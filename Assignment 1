@@ -1,0 +1,39 @@
+1)	SQL Query to fetch records that are present in one table but not in another table.
+
+cmd--- SELECT * FROM EmployeeSalary MINUS SELECT * FROM EmployeeSalary;	
+
+2)	SQL query to fetch all the employees who are not working on any project.
+
+cmd--- SELECT EmpId FROM EmployeeSalary WHERE Project IS NULL;
+
+3)	SQL query to fetch all the Employees from EmployeeDetails who joined in the Year 2020.
+
+cmd--- SELECT * FROM EmployeeDetails WHERE DateOfJoining BETWEEN '01/01/2020' AND '31/12/2020';
+
+4)	Fetch all employees from EmployeeDetails who have a salary record in EmployeeSalary.
+
+cmd--- SELECT * FROM EmployeeDetails E WHERE EXISTS (SELECT * FROM EmployeeSalary S WHERE  E.EmpId = S.EmpId);
+
+5)	Write an SQL query to fetch a project-wise count of employees.
+
+cmd--- SELECT Project, count(EmpId) EmpProjectCount FROM EmployeeSalary GROUP BY Project ORDER BY EmpProjectCount DESC;
+
+6)	Fetch employee names and salaries even if the salary value is not present for the employee.
+
+cmd--- SELECT Project, count(EmpId) EmpProjectCount FROM EmployeeSalary GROUP BY Project ORDER BY EmpProjectCount DESC;
+
+7)	Write an SQL query to fetch all the Employees who are also managers.
+
+cmd--- SELECT DISTINCT E.FullName FROM EmployeeDetails E INNER JOIN EmployeeDetails M ON E.EmpID = M.ManagerID;
+
+8)	Write an SQL query to fetch duplicate records from EmployeeDetails.
+
+cmd--- SELECT FullName, ManagerId, DateOfJoining, City, COUNT(*) FROM EmployeeDetails GROUP BY FullName, ManagerId, DateOfJoining, City HAVING COUNT(*) > 1;
+
+9)	Write an SQL query to fetch only odd rows from the table.
+
+cmd--- SELECT * FROM EmployeeDetails WHERE MOD (EmpId, 2) <> 0;
+
+10)	Write a query to find the 3rd highest salary from a table without top or limit keyword.
+
+cmd--- SELECT Salary FROM EmployeeSalary Emp1 WHERE 2 = (SELECT COUNT( DISTINCT ( Emp2.Salary ) ) FROM EmployeeSalary Emp2 WHERE Emp2.Salary > Emp1.Salary)
